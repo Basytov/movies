@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import Header from './components/header/Header';
 import './App.css';
+import { useState } from 'react';
+import NewItem from './components/NewItem/NewItem';
 
 function App() {
+  const [moviesData, setMoviesData] = useState([])
+  const pushMovie = (data) => {
+    const addedCopy = [...moviesData]
+    addedCopy.push(data)
+    setMoviesData(addedCopy)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header pushMovie={pushMovie} />
+      <NewItem moviesData={moviesData} deleteItem={setMoviesData} />
     </div>
   );
 }
